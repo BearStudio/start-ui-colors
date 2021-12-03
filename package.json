@@ -23,8 +23,8 @@
     "editorType": [
       "figma"
     ],
-    "id": "react-editor",
-    "name": "React Editor",
+    "id": "fr.bearstudio.start-ui-colors",
+    "name": "🚀 Start UI [colors]",
     "main": "src/main.ts",
     "ui": "src/ui.tsx"
   }
