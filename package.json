@@ -2,6 +2,7 @@
   "dependencies": {
     "@create-figma-plugin/ui": "^1.7.3",
     "@create-figma-plugin/utilities": "^1.7.3",
+    "lodash": "4.17.21",
     "preact": "^10",
     "prismjs": "^1.25.0",
     "react-simple-code-editor": "^0.11.0"
@@ -10,6 +11,7 @@
     "@create-figma-plugin/build": "^1.7.3",
     "@create-figma-plugin/tsconfig": "^1.7.3",
     "@figma/plugin-typings": "1.37.0",
+    "@types/lodash": "4.14.177",
     "@types/prismjs": "^1.16.6",
     "@types/react": "17.0.37",
     "react": "17.0.2",

@@ -1,8 +1,12 @@
+import { Fragment } from "react";
 import {
   Button,
   Container,
+  Checkbox,
+  Stack,
   render,
   VerticalSpace,
+  Text,
 } from "@create-figma-plugin/ui";
 import { emit } from "@create-figma-plugin/utilities";
 import { h } from "preact";
@@ -13,35 +17,44 @@ import Editor from "react-simple-code-editor";
 import styles from "./styles.css";
 import { InsertCodeHandler } from "./types";
 
-import "prismjs/components/prism-clike.js";
-import "prismjs/components/prism-javascript.js";
-import "!prismjs/themes/prism.css";
-
-function Plugin() {
-  const [code, setCode] = useState(`function add(a, b) {\n  return a + b;\n}`);
-  const handleInsertCodeButtonClick = useCallback(
-    function () {
-      emit<InsertCodeHandler>("INSERT_CODE", code);
-    },
-    [code]
-  );
+function Plugin({
+  colorStyles,
+}: {
+  colorStyles: Record<string, ColorStyle[]>;
+}) {
+  // const handleInsertCodeButtonClick = useCallback(
+  //   function () {
+  //     emit<InsertCodeHandler>("INSERT_CODE", code);
+  //   },
+  //   [code]
+  // );
   return (
     <Container>
       <VerticalSpace space="small" />
-      <div class={styles.container}>
-        <Editor
-          highlight={function (code: string) {
-            return highlight(code, languages.js, "js");
-          }}
-          onValueChange={setCode}
-          preClassName={styles.editor}
-          textareaClassName={styles.editor}
-          value={code}
-        />
-      </div>
+      <Stack space="extraSmall">
+        {Object.keys(colorStyles).map((color) => (
+          <Fragment key={color}>
+            <VerticalSpace space="small" />
+            <Text bold>{color}</Text>
+            <VerticalSpace space="small" />
+            <Stack space="extraSmall">
+              {colorStyles[color].length > 0 &&
+                colorStyles[color].map((colorStyle) => (
+                  <Checkbox
+                    key={colorStyle.id}
+                    onChange={() => {}}
+                    value={false}
+                  >
+                    <Text>{colorStyle.name}</Text>
+                  </Checkbox>
+                ))}
+            </Stack>
+          </Fragment>
+        ))}
+      </Stack>
       <VerticalSpace space="large" />
-      <Button fullWidth onClick={handleInsertCodeButtonClick}>
-        Insert Code my code
+      <Button fullWidth onClick={() => undefined}>
+        Copy to clipboard
       </Button>
       <VerticalSpace space="small" />
     </Container>
